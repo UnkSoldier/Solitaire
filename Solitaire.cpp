@@ -96,10 +96,10 @@ void Solitaire::deplacerTalonAPile(int p_pileDestination)
 			this->m_talon.front().reqSorte() == m_pile[p_pileDestination].top().reqSorte())
 	{
 		m_pile[p_pileDestination].push(m_talon.front());
-		m_pile->pop();
+		m_talon.pop();
 	}
 	else
 	{
-		cout << "Impossible d'ajouter cette carte à la pile!" << endl;
+		cout << "Impossible d'ajouter cette carte a la pile!" << endl;
 	}
 }

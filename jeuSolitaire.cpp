@@ -26,7 +26,8 @@ int main()
 	//Création de la partie de Solitaire.
 	Solitaire* partie = new Solitaire();
 
-	partie->avancerTalon();
+	partie->deplacerTalonAPile(1);
+	//partie->avancerTalon();
 	partie->deplacerTalonAPile(1);
 
 	/*Carte carte1((Carte::Valeur) 1, (Carte::Sorte) 1); // As de Coeur
