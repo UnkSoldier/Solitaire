@@ -7,6 +7,7 @@
 
 #include "Solitaire.h"
 #include "ColonneCartes.h"
+#include "Carte.h"
 #include <vector>
 #include <stack>
 #include <iostream>
@@ -27,7 +28,7 @@ Solitaire::Solitaire()
 {
 	vector<Carte> v;
 	creerJeuCartes(v);
-	brasserCartes(v);
+	//brasserCartes(v);
 
 	for(int i = 0; i<=6; i++) {
 		vector<Carte> listeDeCartes;
@@ -65,8 +66,40 @@ void Solitaire::avancerTalon()
 	m_talon.pop();
 }
 
-void deplacerColonneAColonne(int p_colonneSource, int p_colonneDestination, int p_nbCartes)
+void Solitaire::deplacerColonneAColonne(int p_colonneSource, int p_colonneDestination, int p_nbCartes)
 {
 	PRECONDITION(p_colonneSource >=0 && p_colonneSource <=6);
 	PRECONDITION(p_colonneDestination >=0 && p_colonneDestination <=6);
+
+	//
+	m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
+}
+
+void Solitaire::deplacerTalonAPile(int p_pileDestination)
+{
+	PRECONDITION(p_pileDestination >=0 && p_pileDestination <=3);
+
+	//Verification si la pile est vide. Si elle est vide, seul les As peuvent débuter la pile.
+	if(m_pile[p_pileDestination].empty())
+	{
+		if(m_talon.front().reqValeur() == Carte::AS)
+		{
+			m_pile[p_pileDestination].push(m_talon.front());
+			m_talon.pop();
+		}
+		else
+		{
+			cout << "Coup Invalide!" << endl;
+		}
+	}
+	else if(this->m_talon.front().estSuivante(m_pile[p_pileDestination].top()) &&
+			this->m_talon.front().reqSorte() == m_pile[p_pileDestination].top().reqSorte())
+	{
+		m_pile[p_pileDestination].push(m_talon.front());
+		m_pile->pop();
+	}
+	else
+	{
+		cout << "Impossible d'ajouter cette carte à la pile!" << endl;
+	}
 }

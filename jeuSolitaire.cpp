@@ -24,9 +24,12 @@ using namespace std;
 int main()
 {
 	//Création de la partie de Solitaire.
-	//Solitaire* partie = new Solitaire();
+	Solitaire* partie = new Solitaire();
 
-	Carte carte1((Carte::Valeur) 1, (Carte::Sorte) 1); // As de Coeur
+	partie->avancerTalon();
+	partie->deplacerTalonAPile(1);
+
+	/*Carte carte1((Carte::Valeur) 1, (Carte::Sorte) 1); // As de Coeur
 	Carte carte2((Carte::Valeur) 2, (Carte::Sorte) 1); // Deux de coeur
 	Carte carte3((Carte::Valeur) 1, (Carte::Sorte) 3); // As de Pique
 	Carte carte4((Carte::Valeur) 1, (Carte::Sorte) 4); // As de Trefle
@@ -40,6 +43,7 @@ int main()
 	cout << carte2.estSuivante(carte1) << endl; // Vrai (1)
 
 	ColonneCartes* colonne = new ColonneCartes();
+
 	//colonne->initColonneCartes();
 
 	colonne->ajoute(carte5);
