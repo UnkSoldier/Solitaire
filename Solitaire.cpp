@@ -41,7 +41,6 @@ Solitaire::Solitaire()
 	for ( int i = 0; i < v.size() ;++i){
 		this->m_talon.push(v[i]);
 	}
-
 }
 
 void Solitaire::brasserCartes(vector<Carte> &v) const {//Melange le jeu de carte dans le vector.
