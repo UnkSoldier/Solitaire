@@ -9,6 +9,7 @@
 #define COLONNECARTES_H_
 
 #include "Carte.h"
+#include "Solitaire.h"
 #include <vector>
 
 using namespace std;

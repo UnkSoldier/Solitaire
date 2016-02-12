@@ -7,8 +7,6 @@
 
 #include "ColonneCartes.h"
 #include "Solitaire.h"
-#include "Carte.h"
-#include <vector>
 
 using namespace std;
 
@@ -32,7 +30,7 @@ void ColonneCartes::ajoute(const Carte& p_carte) {
 	//Je pousse la carte.
 	if(m_lesCartes.empty())
 	{
-		if(p_carte.reqValeur() == 13)
+		if(p_carte.reqValeur() == Carte::ROI)
 		{
 			m_lesCartes.push_back(p_carte);
 			m_nbCartesVisibles++;
@@ -65,15 +63,22 @@ void ColonneCartes::deplacePaquet(ColonneCartes& p_destination, int p_nombreCart
 	while(i < p_nombreCartes)
 	{
 		paquetADeplacer.push_back(m_lesCartes.back());
-		m_lesCartes.pop_back();
+		supprimeDerniereCarte();
 		i++;
-		m_nbCartesVisibles--;
 	}
 
 	for(iter = paquetADeplacer.begin(); iter != paquetADeplacer.end(); ++iter)
 	{
-		p_destination.ajoute(paquetADeplacer.back());
-		paquetADeplacer.pop_back();
+		cout << paquetADeplacer.size() << endl;
+		if(paquetADeplacer.size() !=0)
+		{
+			p_destination.ajoute(paquetADeplacer.back());
+			paquetADeplacer.pop_back();
+		}
+		else if(paquetADeplacer.size() == 0)
+		{
+			break;
+		}
 	}
 }
 

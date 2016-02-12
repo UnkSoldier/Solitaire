@@ -9,15 +9,8 @@
 
 #include "Carte.h"
 #include "Solitaire.h"
-#include <iostream>
-#include "ColonneCartes.h"
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <cstdlib>
 #include <algorithm> //permet d'utiliser random_shuffle.
-#include <ctime>
-#include "ColonneCartes.h"
+
 
 using namespace std;
 
@@ -26,9 +19,15 @@ int main()
 	//Création de la partie de Solitaire.
 	Solitaire* partie = new Solitaire();
 
-	partie->deplacerTalonAPile(1);
+
+	partie->deplacerTalonAColone(0);
+	partie->deplacerTalonAColone(0);
+	partie->deplacerTalonAColone(0);
+
+	partie->deplacerColonneAColonne(0,1,3);
+	//partie->deplacerTalonAPile(1);
 	//partie->avancerTalon();
-	partie->deplacerTalonAPile(1);
+	//partie->deplacerTalonAPile(1);
 
 	/*Carte carte1((Carte::Valeur) 1, (Carte::Sorte) 1); // As de Coeur
 	Carte carte2((Carte::Valeur) 2, (Carte::Sorte) 1); // Deux de coeur
@@ -50,7 +49,7 @@ int main()
 	colonne->ajoute(carte5);
 	colonne->ajoute(carte6);
 	colonne->ajoute(carte7);
-	colonne->supprimeDerniereCarte();
+	colonne->supprimeDerniereCarte();*/
 
 
 	cout << "LOL!" << endl;
