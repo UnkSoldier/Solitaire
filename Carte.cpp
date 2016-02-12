@@ -17,7 +17,7 @@ Carte::Carte(int p_valeur, int p_sorte) : m_valeur(p_valeur), m_sorte(p_sorte)
 
 	//Vérification des postconditions.
 	POSTCONDITION(m_sorte == p_sorte);
-	POSTCONDITION(m_valeur == m_valeur);
+	POSTCONDITION(m_valeur == p_valeur);
 
 	//Verification des invariants.
 	INVARIANTS();
@@ -42,7 +42,7 @@ int Carte::reqValeur() const
 }
 bool Carte::estSuivante(const Carte& p_carte) const
 {
-	if(this->m_valeur == (p_carte.m_valeur + 1))
+	if(this->m_valeur == (p_carte.reqValeur() + 1))
 	{
 		return true;
 	}

@@ -125,7 +125,6 @@ void Solitaire::deplacerColonneAPile(int p_colonneSource, int pileDestination)
 		if(m_pile[pileDestination].empty())
 		{
 			//Si la pile est vide, seul les as ont le droit de débuter la pile.
-			if(this->m_colonnes[pileDestination].)
 		}
 		else
 		{
