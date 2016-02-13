@@ -26,6 +26,7 @@ class ColonneCartes
 	void ajoute(const Carte & p_carte);
 	void deplacePaquet(ColonneCartes& p_destination, int p_nombreCartes);
 	void supprimeDerniereCarte();
+	Carte derniereCarteColonne();
 
 	void asgNbCartesVisibles();
 	int reqNbCartesVisibles() const;

@@ -92,5 +92,8 @@ int ColonneCartes::reqNbCartesVisibles() const
 	return m_nbCartesVisibles;
 }
 
-
+Carte ColonneCartes::derniereCarteColonne()
+{
+	return m_lesCartes.back();
+}
 

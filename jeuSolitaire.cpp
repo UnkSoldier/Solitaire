@@ -25,6 +25,8 @@ int main()
 	partie->deplacerTalonAColone(0);
 
 	partie->deplacerColonneAColonne(0,1,3);
+
+
 	//partie->deplacerTalonAPile(1);
 	//partie->avancerTalon();
 	//partie->deplacerTalonAPile(1);

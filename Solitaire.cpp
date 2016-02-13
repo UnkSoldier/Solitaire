@@ -125,17 +125,31 @@ void Solitaire::deplacerColonneAPile(int p_colonneSource, int pileDestination)
 		if(m_pile[pileDestination].empty())
 		{
 			//Si la pile est vide, seul les as ont le droit de débuter la pile.
+			if(m_pile[pileDestination].empty())
+			{
+				if(m_colonnes[p_colonneSource].derniereCarteColonne().reqValeur() == Carte::AS)
+				{
+					m_pile[pileDestination].push(m_colonnes[p_colonneSource].derniereCarteColonne());
+					m_colonnes[p_colonneSource].supprimeDerniereCarte();
+				}
+			}
+			else if(this->m_colonnes[p_colonneSource].derniereCarteColonne().estSuivante(m_colonnes->derniereCarteColonne()) &&
+					this->m_colonnes[p_colonneSource].derniereCarteColonne().reqSorte() == m_pile[pileDestination].top().reqSorte())
+			{
+				m_pile[pileDestination].push(m_colonnes->derniereCarteColonne());
+				m_colonnes[p_colonneSource].supprimeDerniereCarte();
+			}
+			else
+			{
+				cout << "Impossible d'ajouter cette carte a la pile!" << endl;
+			}
 		}
-		else
-		{
-			cout << "Coup Invalide!" << endl;
-		}
+
 	}
 
 }
 
-void Solitaire::deplacerTalonAColone(int p_colonneDestination)
-{
+void Solitaire::deplacerTalonAColone(int p_colonneDestination) {
 	PRECONDITION(p_colonneDestination >= 0 && p_colonneDestination <= 6);
 
 	int temp;
@@ -143,12 +157,10 @@ void Solitaire::deplacerTalonAColone(int p_colonneDestination)
 	m_colonnes[p_colonneDestination].ajoute(m_talon.front());
 
 	//Je vérifie si reqNbCartesVisibles de la colonne a été modifiée
-	if(temp == this->m_colonnes[p_colonneDestination].reqNbCartesVisibles())
-	{
+	if (temp == this->m_colonnes[p_colonneDestination].reqNbCartesVisibles()) {
 		cout << "Erreur" << endl;
 	}
-	else if(temp != (this->m_colonnes[p_colonneDestination].reqNbCartesVisibles()))
-	{
+	else if (temp != (this->m_colonnes[p_colonneDestination].reqNbCartesVisibles())) {
 		cout << "Retrait de la carte!" << endl;
 		m_talon.pop();
 	}
