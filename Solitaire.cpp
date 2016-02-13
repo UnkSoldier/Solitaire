@@ -122,31 +122,26 @@ void Solitaire::deplacerColonneAPile(int p_colonneSource, int pileDestination)
 
 	if(m_pile[pileDestination].empty())
 	{
-		if(m_pile[pileDestination].empty())
+		if (m_colonnes[p_colonneSource].derniereCarteColonne().reqValeur() == Carte::AS)
 		{
-			//Si la pile est vide, seul les as ont le droit de débuter la pile.
-			if(m_pile[pileDestination].empty())
-			{
-				if(m_colonnes[p_colonneSource].derniereCarteColonne().reqValeur() == Carte::AS)
-				{
-					m_pile[pileDestination].push(m_colonnes[p_colonneSource].derniereCarteColonne());
-					m_colonnes[p_colonneSource].supprimeDerniereCarte();
-				}
-			}
-			else if(this->m_colonnes[p_colonneSource].derniereCarteColonne().estSuivante(m_colonnes->derniereCarteColonne()) &&
-					this->m_colonnes[p_colonneSource].derniereCarteColonne().reqSorte() == m_pile[pileDestination].top().reqSorte())
-			{
-				m_pile[pileDestination].push(m_colonnes->derniereCarteColonne());
-				m_colonnes[p_colonneSource].supprimeDerniereCarte();
-			}
-			else
-			{
-				cout << "Impossible d'ajouter cette carte a la pile!" << endl;
-			}
+			m_pile[pileDestination].push(m_colonnes[p_colonneSource].derniereCarteColonne());
+			m_colonnes[p_colonneSource].supprimeDerniereCarte();
 		}
-
+		else
+		{
+			cout << "Coup Invalide!" << endl;
+		}
 	}
-
+	else if(this->m_colonnes[p_colonneSource].derniereCarteColonne().estSuivante(m_colonnes->derniereCarteColonne()) &&
+			this->m_colonnes[p_colonneSource].derniereCarteColonne().reqSorte() == m_pile[pileDestination].top().reqSorte())
+	{
+		m_pile[pileDestination].push(m_colonnes->derniereCarteColonne());
+		m_colonnes[p_colonneSource].supprimeDerniereCarte();
+	}
+	else
+	{
+		cout << "Impossible d'ajouter cette carte a la pile!" << endl;
+	}
 }
 
 void Solitaire::deplacerTalonAColone(int p_colonneDestination) {
