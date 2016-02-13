@@ -42,7 +42,7 @@ int Carte::reqValeur() const
 }
 bool Carte::estSuivante(const Carte& p_carte) const
 {
-	if(this->m_valeur == (p_carte.reqValeur() + 1))
+	if(this->m_valeur == p_carte.reqValeur() + 1)
 	{
 		return true;
 	}

@@ -27,8 +27,8 @@ class ColonneCartes
 	void deplacePaquet(ColonneCartes& p_destination, int p_nombreCartes);
 	void supprimeDerniereCarte();
 	Carte derniereCarteColonne();
+	int colonneEstVide() const;
 
-	void asgNbCartesVisibles();
 	int reqNbCartesVisibles() const;
 	friend std::ostream& operator<<(std::ostream & os,const ColonneCartes& p_colonneCartes);
 

@@ -97,3 +97,7 @@ Carte ColonneCartes::derniereCarteColonne()
 	return m_lesCartes.back();
 }
 
+int ColonneCartes::colonneEstVide() const
+{
+	return m_lesCartes.size();
+}
