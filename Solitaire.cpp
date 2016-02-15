@@ -8,7 +8,7 @@
 #include "Solitaire.h"
 #include <algorithm> // permet d'utiliser random_shuffle.
 #include <ctime> //Permet d'utiliser time.
-
+#include <sstream>
 
 using namespace std;
 
@@ -163,4 +163,21 @@ bool Solitaire::verifieGagne() const
 		return true;
 	}
 	return false;
+}
+std::string Solitaire::reqEtatJeu() const
+{
+	std::ostringstream jeuFormate;
+	jeuFormate << "Talon :" << m_talon.front() << "          " << "Piles   "  << m_pile[0] << "   " << m_pile[1]
+			<< m_pile[2] << "   " << m_pile[3] << endl
+	<< endl <<
+	   "Col.0: " << this->m_colonnes[0] << endl
+	<< "Col.1: " << this->m_colonnes[1] << endl
+   	<< "Col.2: " << this->m_colonnes[2] << endl
+	<< "Col.3: " << this->m_colonnes[3] << endl
+	<< "Col.4: " << this->m_colonnes[4] << endl
+	<< "Col.5: " << this->m_colonnes[5] << endl
+    << "Col.6: " << this->m_colonnes[6] << endl
+    << "Col.7: " << this->m_colonnes[7] << endl;
+
+	return jeuFormate;
 }

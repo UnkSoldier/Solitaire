@@ -10,7 +10,7 @@
 
 using namespace std;
 
-ColonneCartes::ColonneCartes() : m_nbCartesVisibles(0)
+ColonneCartes::ColonneCartes() : m_nbCartesVisibles(1)
 {
 
 }
@@ -86,6 +86,10 @@ void ColonneCartes::supprimeDerniereCarte()
 {
 	m_lesCartes.pop_back();
 	m_nbCartesVisibles--;
+	if(m_nbCartesVisibles == 0 && m_lesCartes.size() >0)
+	{
+		m_nbCartesVisibles++;
+	}
 }
 int ColonneCartes::reqNbCartesVisibles() const
 {
@@ -100,4 +104,20 @@ Carte ColonneCartes::derniereCarteColonne()
 int ColonneCartes::colonneEstVide() const
 {
 	return m_lesCartes.size();
+}
+
+std::ostream& operator<<(std::ostream & os,const ColonneCartes& p_colonneCartes)
+{
+	for(int i=0; i < p_colonneCartes.m_lesCartes.size(); i++)
+	{
+		if(i >= (p_colonneCartes.m_lesCartes.size() - p_colonneCartes.m_nbCartesVisibles))
+		{
+			os << "?";
+		}
+		else
+		{
+			os << p_colonneCartes.m_lesCartes[i].reqValeur() << p_colonneCartes.m_lesCartes[i].reqSorte();
+		}
+	}
+	return os;
 }

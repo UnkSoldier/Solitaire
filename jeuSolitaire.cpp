@@ -19,8 +19,7 @@ int main()
 	//Création de la partie de Solitaire.
 	Solitaire* partie = new Solitaire();
 
-	cout << partie->verifieGagne() << endl;
-	cout << "Faux = " << false << endl;
+	cout << partie << endl;
 
 	return 0;
 }

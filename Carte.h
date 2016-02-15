@@ -11,7 +11,6 @@
 #include <iostream>
 #include "ContratException.h"
 
-
 class Carte
 {
 	public:
@@ -25,7 +24,7 @@ class Carte
 	~Carte(){};
 
 	//Opérateur << - Permet d'afficher les enumérateurs plus haut lors d'un cout.
-	//bool operator<<(std::ostream& os,);
+	//std::ostream &operator<<(const Carte::Valeur Source);
 
 	bool estSuivante(const Carte& p_carte) const;
 	bool estMemeCouleur(const Carte& p_carte) const;

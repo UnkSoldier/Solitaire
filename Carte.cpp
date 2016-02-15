@@ -6,6 +6,7 @@
  */
 
 #include "Carte.h"
+#include <sstream>
 
 using namespace std;
 
@@ -75,10 +76,14 @@ bool Carte::estMemeCouleur(const Carte& p_carte) const
 	}
 }
 
-
-
 void Carte::verifieInvariant() const
 {
 	INVARIANT(m_sorte >=1 && m_sorte <=13);
 	INVARIANT(m_valeur >=1 && m_sorte <=4);
 }
+/*std::ostream& Carte::operator<<(const Carte::Valeur) {
+	if(Source == Carte::AS){
+		Source << "A";
+	}
+	return Source;
+}*/
