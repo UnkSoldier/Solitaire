@@ -7,6 +7,8 @@
 
 #include "ColonneCartes.h"
 #include "Solitaire.h"
+#include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -106,18 +108,29 @@ int ColonneCartes::colonneEstVide() const
 	return m_lesCartes.size();
 }
 
-std::ostream& operator<<(std::ostream & os, const ColonneCartes& p_colonneCartes)
-{
-	for(int i=0; i < p_colonneCartes.m_lesCartes.size(); i++)
+std::string ColonneCartes::sortieFormate() const {
+	std::string colonne;
+	if(!this->m_lesCartes.empty())
 	{
-		if(i > (p_colonneCartes.m_lesCartes.size() - p_colonneCartes.m_nbCartesVisibles))
+		for(int i = 0; i < this->m_lesCartes.size(); i++)
 		{
-			os << "?";
-		}
-		else
-		{
-			os << p_colonneCartes.m_lesCartes.back().reqValeur() << "'" << p_colonneCartes.m_lesCartes[i].reqSorte();
+			if(i > this->m_lesCartes.size() - this->m_nbCartesVisibles)
+			{
+				colonne = colonne + (m_lesCartes[i].reqValeurString() + " " + m_lesCartes[i].reqSorteString());
+			}
 		}
 	}
+	else
+	{
+		colonne = "X";
+	}
+	return colonne;
+}
+
+std::ostream& operator<<(std::ostream & os, const ColonneCartes& p_colonneCartes)
+{
+	std::string sortie;
+	sortie = p_colonneCartes.sortieFormate();
+	os << sortie;
 	return os;
 }

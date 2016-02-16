@@ -23,5 +23,6 @@ int main()
 	partie->avancerTalon();
 	cout << partie->reqEtatJeu() << endl;
 
+
 	return 0;
 }

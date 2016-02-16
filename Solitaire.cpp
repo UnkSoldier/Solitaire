@@ -9,6 +9,7 @@
 #include <algorithm> // permet d'utiliser random_shuffle.
 #include <ctime> //Permet d'utiliser time.
 #include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -184,10 +185,12 @@ std::string Solitaire::verifieCartePile(int p_pileSource) const {
 std::string Solitaire::reqEtatJeu() const
 {
 	std::ostringstream jeuFormate;
-	jeuFormate << "Talon :" << m_talon.front() << "          "
-	<< "Piles   "  << verifieCartePile(0) << "   " << verifieCartePile(1) << "   "
-	<< verifieCartePile(2) << "   " << verifieCartePile(3) << endl;
-	   //"Col.0: " << this->m_colonnes[0] << endl;
+	jeuFormate << "Talon :" << m_talon.front() << "     "
+	<< "Piles:   " << verifieCartePile(0) << std::setw(3) << verifieCartePile(1) << std::setw(3)
+	<< verifieCartePile(2) << std::setw(3) << verifieCartePile(3) << endl
+	<< endl <<
+
+	"Col.0: " << m_colonnes[0].sortieFormate() << endl;
 	/*<< "Col.1: " << this->m_colonnes[1] << endl
    	<< "Col.2: " << this->m_colonnes[2] << endl
 	<< "Col.3: " << this->m_colonnes[3] << endl

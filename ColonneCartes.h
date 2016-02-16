@@ -31,6 +31,7 @@ class ColonneCartes
 
 	int reqNbCartesVisibles() const;
 	friend std::ostream& operator<<(std::ostream & os,const ColonneCartes& p_colonneCartes);
+	std::string sortieFormate() const;
 
 	private:
 
