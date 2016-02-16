@@ -36,7 +36,25 @@ std::string Carte::reqValeurString() const {
 	std::string valeurString;
 	switch (this->reqValeur())
 	{
-		case 1: valeurString = "A";
+		case 1: valeurString = "1";
+			break;
+		case 2: valeurString = "2";
+			break;
+		case 3: valeurString = "3";
+			break;
+		case 4: valeurString = "4";
+			break;
+		case 5: valeurString = "5";
+			break;
+		case 6: valeurString = "6";
+			break;
+		case 7: valeurString = "7";
+			break;
+		case 8: valeurString = "8";
+			break;
+		case 9: valeurString = "9";
+			break;
+		case 10: valeurString = "10";
 			break;
 		case 11: valeurString = "V";
 			break;
@@ -57,6 +75,7 @@ std::string Carte::reqSorteString() const {
 		case 3: sorteString = "PI";
 			break;
 		case 4: sorteString = "TR";
+			break;
 	}
 	return sorteString;
 }

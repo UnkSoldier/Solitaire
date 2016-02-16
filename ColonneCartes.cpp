@@ -114,9 +114,13 @@ std::string ColonneCartes::sortieFormate() const {
 	{
 		for(int i = 0; i < this->m_lesCartes.size(); i++)
 		{
-			if(i > this->m_lesCartes.size() - this->m_nbCartesVisibles)
+			if(i >= this->m_lesCartes.size() - this->m_nbCartesVisibles)
 			{
-				colonne = colonne + (m_lesCartes[i].reqValeurString() + " " + m_lesCartes[i].reqSorteString());
+				colonne = colonne + " " + (m_lesCartes[i].reqValeurString() + "'" + m_lesCartes[i].reqSorteString());
+			}
+			else if(i < this->m_lesCartes.size() - this->m_nbCartesVisibles)
+			{
+				colonne = colonne + " ?";
 			}
 		}
 	}
