@@ -24,14 +24,14 @@ class Carte
 	~Carte(){};
 
 	//Opérateur << - Permet d'afficher les enumérateurs plus haut lors d'un cout.
-	//std::ostream &operator<<(const Carte::Valeur Source);
+	friend std::ostream& operator<<(std::ostream& os, const Carte& Source);
 
 	bool estSuivante(const Carte& p_carte) const;
 	bool estMemeCouleur(const Carte& p_carte) const;
 
 	//Mutateurs
-	void asgSorte(const int& p_sorte);
-	void asgValeur(const int& p_valeur);
+	std::string reqValeurString() const;
+	std::string reqSorteString() const;
 
 	//Accesseurs
 	int reqSorte() const;

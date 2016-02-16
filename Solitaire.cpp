@@ -49,16 +49,20 @@ void Solitaire::creerJeuCartes(vector<Carte> &v) const {
 	{
 		for(int j = 1; j<=13;j++)
 		{
-			Carte carte((Carte::Valeur) j, (Carte::Sorte) i);
+			Carte carte((Carte::Valeur) 1, (Carte::Sorte) 1); //Carte carte((Carte::Valeur) j, (Carte::Sorte) i)
 			v.push_back(carte);
 		}
 	}
 }
 
-void Solitaire::avancerTalon()
-{
+void Solitaire::avancerTalon() {
+	if (m_talon.empty()) {
+		cout << "Le talon est vide!" << endl;
+	}
+	else{
 	m_talon.push(m_talon.front());
 	m_talon.pop();
+	}
 }
 
 void Solitaire::deplacerColonneAColonne(int p_colonneSource, int p_colonneDestination, int p_nbCartes)
@@ -164,20 +168,33 @@ bool Solitaire::verifieGagne() const
 	}
 	return false;
 }
+
+std::string Solitaire::verifieCartePile(int p_pileSource) const {
+	std::string valeurRetourne;
+	if (m_pile[p_pileSource].empty()) {
+		valeurRetourne = "X";
+		return valeurRetourne;
+	}
+	else
+	{
+		valeurRetourne = m_pile[p_pileSource].top().reqValeur() + "'" + m_pile[p_pileSource].top().reqSorte();
+		return valeurRetourne;
+	}
+}
 std::string Solitaire::reqEtatJeu() const
 {
 	std::ostringstream jeuFormate;
-	jeuFormate << "Talon :" << m_talon.front() << "          " << "Piles   "  << m_pile[0] << "   " << m_pile[1]
-			<< m_pile[2] << "   " << m_pile[3] << endl
-	<< endl <<
-	   "Col.0: " << this->m_colonnes[0] << endl
-	<< "Col.1: " << this->m_colonnes[1] << endl
+	jeuFormate << "Talon :" << m_talon.front() << "          "
+	<< "Piles   "  << verifieCartePile(0) << "   " << verifieCartePile(1) << "   "
+	<< verifieCartePile(2) << "   " << verifieCartePile(3) << endl;
+	   //"Col.0: " << this->m_colonnes[0] << endl;
+	/*<< "Col.1: " << this->m_colonnes[1] << endl
    	<< "Col.2: " << this->m_colonnes[2] << endl
 	<< "Col.3: " << this->m_colonnes[3] << endl
 	<< "Col.4: " << this->m_colonnes[4] << endl
 	<< "Col.5: " << this->m_colonnes[5] << endl
     << "Col.6: " << this->m_colonnes[6] << endl
-    << "Col.7: " << this->m_colonnes[7] << endl;
+    << "Col.7: " << this->m_colonnes[7] << endl;*/
 
-	return jeuFormate;
+	return jeuFormate.str();
 }

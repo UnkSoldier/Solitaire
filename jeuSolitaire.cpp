@@ -19,7 +19,9 @@ int main()
 	//Création de la partie de Solitaire.
 	Solitaire* partie = new Solitaire();
 
-	cout << partie << endl;
+	cout << partie->reqEtatJeu() << endl;
+	partie->avancerTalon();
+	cout << partie->reqEtatJeu() << endl;
 
 	return 0;
 }

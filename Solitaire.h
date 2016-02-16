@@ -31,7 +31,7 @@ class Solitaire
 	void deplacerColonneAPile(int p_colonneSource, int pileDestination);
 	bool verifieGagne() const;
 
-	std::string asgEtatJeu();
+	std::string verifieCartePile(int p_pileSource) const;
 	std::string reqEtatJeu() const;
 
 	private:

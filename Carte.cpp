@@ -24,15 +24,6 @@ Carte::Carte(int p_valeur, int p_sorte) : m_valeur(p_valeur), m_sorte(p_sorte)
 	INVARIANTS();
 }
 
-void Carte::asgSorte(const int& p_sorte)
-{
-	m_sorte = p_sorte;
-}
-void Carte::asgValeur(const int& p_valeur)
-{
-	m_valeur = p_valeur;
-}
-
 int Carte::reqSorte() const
 {
 	return m_sorte;
@@ -40,6 +31,34 @@ int Carte::reqSorte() const
 int Carte::reqValeur() const
 {
 	return m_valeur;
+}
+std::string Carte::reqValeurString() const {
+	std::string valeurString;
+	switch (this->reqValeur())
+	{
+		case 1: valeurString = "A";
+			break;
+		case 11: valeurString = "V";
+			break;
+		case 12: valeurString = "D";
+			break;
+		case 13: valeurString = "R";
+	}
+	return valeurString;
+}
+std::string Carte::reqSorteString() const {
+	std::string sorteString;
+	switch (this->reqSorte())
+	{
+		case 1: sorteString = "CO";
+			break;
+		case 2: sorteString = "CA";
+			break;
+		case 3: sorteString = "PI";
+			break;
+		case 4: sorteString = "TR";
+	}
+	return sorteString;
 }
 bool Carte::estSuivante(const Carte& p_carte) const
 {
@@ -81,9 +100,14 @@ void Carte::verifieInvariant() const
 	INVARIANT(m_sorte >=1 && m_sorte <=13);
 	INVARIANT(m_valeur >=1 && m_sorte <=4);
 }
-/*std::ostream& Carte::operator<<(const Carte::Valeur) {
-	if(Source == Carte::AS){
-		Source << "A";
-	}
-	return Source;
-}*/
+std::ostream& operator<<(ostream &os, const Carte& Source) {
+	/*cout << Source.reqValeur() << endl;
+	cout << Source.reqSorte() << endl;*/
+	std::string valeurTemp, sorteTemp;
+	valeurTemp = Source.reqValeurString();
+	sorteTemp = Source.reqSorteString();
+
+	os << valeurTemp << "'" << sorteTemp;
+
+	return os;
+}

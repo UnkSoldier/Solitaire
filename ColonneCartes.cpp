@@ -106,17 +106,17 @@ int ColonneCartes::colonneEstVide() const
 	return m_lesCartes.size();
 }
 
-std::ostream& operator<<(std::ostream & os,const ColonneCartes& p_colonneCartes)
+std::ostream& operator<<(std::ostream & os, const ColonneCartes& p_colonneCartes)
 {
 	for(int i=0; i < p_colonneCartes.m_lesCartes.size(); i++)
 	{
-		if(i >= (p_colonneCartes.m_lesCartes.size() - p_colonneCartes.m_nbCartesVisibles))
+		if(i > (p_colonneCartes.m_lesCartes.size() - p_colonneCartes.m_nbCartesVisibles))
 		{
 			os << "?";
 		}
 		else
 		{
-			os << p_colonneCartes.m_lesCartes[i].reqValeur() << p_colonneCartes.m_lesCartes[i].reqSorte();
+			os << p_colonneCartes.m_lesCartes.back().reqValeur() << "'" << p_colonneCartes.m_lesCartes[i].reqSorte();
 		}
 	}
 	return os;
