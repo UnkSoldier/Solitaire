@@ -161,6 +161,7 @@ bool Solitaire::verifieGagne() const
 	else
 		{
 			colonneSontVides = false;
+			break;
 		}
 
 	if(talonEstVide && colonneSontVides)
@@ -176,7 +177,7 @@ std::string Solitaire::verifieCartePile(int p_pileSource) const {
 		valeurRetourne = "X";
 		return valeurRetourne;
 	}
-	else
+	else if(!m_pile[p_pileSource].empty())
 	{
 		valeurRetourne = m_pile[p_pileSource].top().reqValeur() + "'" + m_pile[p_pileSource].top().reqSorte();
 		return valeurRetourne;
@@ -190,20 +191,13 @@ std::string Solitaire::reqEtatJeu() const
 	<< verifieCartePile(2) << std::setw(3) << verifieCartePile(3) << endl
 	<< endl <<
 
-	"Col.0: " << m_colonnes[0].sortieFormate() << endl <<
-	"Col.1: " << m_colonnes[1].sortieFormate() << endl <<
-	"Col.2: " << m_colonnes[2].sortieFormate() << endl <<
-	"Col.3: " << m_colonnes[3].sortieFormate() << endl <<
-	"Col.4: " << m_colonnes[4].sortieFormate() << endl <<
-	"Col.5: " << m_colonnes[5].sortieFormate() << endl <<
-	"Col.6: " << m_colonnes[6].sortieFormate() << endl;
-	/*<< "Col.1: " << this->m_colonnes[1] << endl
-   	<< "Col.2: " << this->m_colonnes[2] << endl
-	<< "Col.3: " << this->m_colonnes[3] << endl
-	<< "Col.4: " << this->m_colonnes[4] << endl
-	<< "Col.5: " << this->m_colonnes[5] << endl
-    << "Col.6: " << this->m_colonnes[6] << endl
-    << "Col.7: " << this->m_colonnes[7] << endl;*/
+	"Col.0: " << m_colonnes[0] << endl <<
+	"Col.1: " << m_colonnes[1] << endl <<
+	"Col.2: " << m_colonnes[2] << endl <<
+	"Col.3: " << m_colonnes[3] << endl <<
+	"Col.4: " << m_colonnes[4] << endl <<
+	"Col.5: " << m_colonnes[5] << endl <<
+	"Col.6: " << m_colonnes[6] << endl;
 
 	return jeuFormate.str();
 }
