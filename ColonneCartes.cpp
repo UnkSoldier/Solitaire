@@ -62,7 +62,7 @@ void ColonneCartes::deplacePaquet(ColonneCartes& p_destination, int p_nombreCart
 	vector<Carte>::iterator iter;
 	int i =0;
 
-	if(!p_nombreCartes > m_nbCartesVisibles) {
+	if(p_nombreCartes <= m_nbCartesVisibles) {
 		while (i < p_nombreCartes) {
 			paquetADeplacer.push_back(m_lesCartes.back());
 			supprimeDerniereCarte();
