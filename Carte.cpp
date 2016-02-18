@@ -36,7 +36,7 @@ std::string Carte::reqValeurString() const {
 	std::string valeurString;
 	switch (this->reqValeur())
 	{
-		case 1: valeurString = "1";
+		case 1: valeurString = "A";
 			break;
 		case 2: valeurString = "2";
 			break;

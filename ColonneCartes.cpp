@@ -62,11 +62,16 @@ void ColonneCartes::deplacePaquet(ColonneCartes& p_destination, int p_nombreCart
 	vector<Carte>::iterator iter;
 	int i =0;
 
-	while(i < p_nombreCartes)
+	if(!p_nombreCartes > m_nbCartesVisibles) {
+		while (i < p_nombreCartes) {
+			paquetADeplacer.push_back(m_lesCartes.back());
+			supprimeDerniereCarte();
+			i++;
+		}
+	}
+	else
 	{
-		paquetADeplacer.push_back(m_lesCartes.back());
-		supprimeDerniereCarte();
-		i++;
+		cout << "Impossible de deplacer ces cartes." << endl;
 	}
 
 	for(iter = paquetADeplacer.begin(); iter != paquetADeplacer.end(); ++iter)

@@ -179,7 +179,7 @@ std::string Solitaire::verifieCartePile(int p_pileSource) const {
 	}
 	else if(!m_pile[p_pileSource].empty())
 	{
-		valeurRetourne = m_pile[p_pileSource].top().reqValeur() + "'" + m_pile[p_pileSource].top().reqSorte();
+		valeurRetourne = m_pile[p_pileSource].top().reqValeurString() + "'" + m_pile[p_pileSource].top().reqSorteString();
 		return valeurRetourne;
 	}
 }
@@ -187,8 +187,8 @@ std::string Solitaire::reqEtatJeu() const
 {
 	std::ostringstream jeuFormate;
 	jeuFormate << "Talon: " << m_talon.front() << "     "
-	<< "Piles:   " << verifieCartePile(0) << std::setw(3) << verifieCartePile(1) << std::setw(3)
-	<< verifieCartePile(2) << std::setw(3) << verifieCartePile(3) << endl
+	<< "Piles:   " << verifieCartePile(0) << "   " << verifieCartePile(1) << "   "
+	<< verifieCartePile(2) << "   " << verifieCartePile(3) << endl
 	<< endl <<
 
 	"Col.0: " << m_colonnes[0] << endl <<
