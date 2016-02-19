@@ -74,8 +74,9 @@ void Solitaire::deplacerColonneAColonne(int p_colonneSource, int p_colonneDestin
 
 	Carte derniereCarteDestination = m_colonnes[p_colonneDestination].derniereCarteColonne();
 	Carte carteSource = m_colonnes[p_colonneSource].carteALaPosition(test);
+	int valeurCarteSource = carteSource.reqValeur();
 
-	if(m_colonnes[p_colonneDestination].colonneEstVide() && carteSource.reqValeur() == Carte::ROI)
+	if((m_colonnes[p_colonneDestination].colonneEstVide()) && (valeurCarteSource == Carte::ROI))
 		{
 			m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
 		}
@@ -152,14 +153,14 @@ void Solitaire::deplacerTalonAColone(int p_colonneDestination) {
 	PRECONDITION(p_colonneDestination >= 0 && p_colonneDestination <= 6);
 
 	int temp;
-	temp = this->m_colonnes[p_colonneDestination].reqNbCartesVisibles();
+	temp = m_colonnes[p_colonneDestination].reqNbCartesVisibles();
 	m_colonnes[p_colonneDestination].ajoute(m_talon.front());
 
 	//Je vérifie si reqNbCartesVisibles de la colonne a été modifiée
-	if (temp == this->m_colonnes[p_colonneDestination].reqNbCartesVisibles()) {
+	if (temp == m_colonnes[p_colonneDestination].reqNbCartesVisibles()) {
 		cout << "Erreur" << endl;
 	}
-	else if (temp != (this->m_colonnes[p_colonneDestination].reqNbCartesVisibles())) {
+	else if (temp != (m_colonnes[p_colonneDestination].reqNbCartesVisibles())) {
 		cout << "Retrait de la carte!" << endl;
 		m_talon.pop();
 	}
