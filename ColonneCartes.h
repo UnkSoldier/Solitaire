@@ -28,6 +28,8 @@ class ColonneCartes
 	void supprimeDerniereCarte();
 	Carte derniereCarteColonne();
 	int colonneEstVide() const;
+	Carte carteALaPosition(int p_position);
+	int reqTailleColonne() const;
 
 	int reqNbCartesVisibles() const;
 	friend std::ostream& operator<<(std::ostream & os,const ColonneCartes& p_colonneCartes);

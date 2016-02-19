@@ -83,33 +83,37 @@ void ColonneCartes::deplacePaquet(ColonneCartes& p_destination, int p_nombreCart
 	vector<Carte>::iterator iter;
 	int i =0;
 
-	if(p_nombreCartes <= m_nbCartesVisibles) {
+	if (p_nombreCartes <= m_nbCartesVisibles) {
 		while (i < p_nombreCartes) {
 			paquetADeplacer.push_back(m_lesCartes.back());
 			supprimeDerniereCarte();
 			i++;
 		}
 	}
-	else
-	{
+	else {
 		cout << "Impossible de deplacer ces cartes." << endl;
 	}
 
-	for(iter = paquetADeplacer.begin(); iter != paquetADeplacer.end(); ++iter)
-	{
-		cout << paquetADeplacer.size() << endl;
-		if(paquetADeplacer.size() !=0)
-		{
+	for (iter = paquetADeplacer.begin(); iter != paquetADeplacer.end(); ++iter) {
+		if (paquetADeplacer.size() != 0) {
 			p_destination.ajoute(paquetADeplacer.back());
 			paquetADeplacer.pop_back();
 		}
-		else if(paquetADeplacer.size() == 0)
-		{
+		else if (paquetADeplacer.size() == 0) {
 			break;
 		}
 	}
 }
-
+Carte ColonneCartes::carteALaPosition(int p_position)
+{
+	for(int i =0; i< (m_lesCartes.size()); i++)
+	{
+		if(i == p_position-1)
+		{
+			return m_lesCartes[i];
+		}
+	}
+}
 /** \fn void supprimeDerniereCarte();
  * \brief Fonction qui supprime la carte située à la fin de la colonne. Si la carte supprimée
  * rend m_nbCartesVisibles à 0 et que la colonne n'est pas vide. On ajoute 1 pour afficher la dernière carte.
@@ -125,6 +129,10 @@ void ColonneCartes::supprimeDerniereCarte()
 	}
 }
 
+int ColonneCartes::reqTailleColonne() const
+{
+	return m_lesCartes.size();
+}
 /** \fn int reqNbCartesVisibles()
  * \brief Fonction retournant la valeur membre m_nbCartesVisibles.
  *

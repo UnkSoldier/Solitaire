@@ -70,8 +70,19 @@ void Solitaire::deplacerColonneAColonne(int p_colonneSource, int p_colonneDestin
 {
 	PRECONDITION(p_colonneSource >=0 && p_colonneSource <=6);
 	PRECONDITION(p_colonneDestination >=0 && p_colonneDestination <=6);
+	int test = (m_colonnes[p_colonneSource].reqTailleColonne() + 1) - p_nbCartes;
 
-	m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
+	Carte derniereCarteDestination = m_colonnes[p_colonneDestination].derniereCarteColonne();
+	Carte carteSource = m_colonnes[p_colonneSource].carteALaPosition(test);
+
+	if(derniereCarteDestination.estSuivante(carteSource) && !derniereCarteDestination.estMemeCouleur(carteSource))
+	{
+		m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
+	}
+	else
+	{
+		cout << endl << "Ce deplacement est invalide!" << endl << endl;
+	}
 }
 
 void Solitaire::deplacerTalonAPile(int p_pileDestination)
