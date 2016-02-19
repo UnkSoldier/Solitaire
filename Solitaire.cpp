@@ -70,16 +70,20 @@ void Solitaire::deplacerColonneAColonne(int p_colonneSource, int p_colonneDestin
 {
 	PRECONDITION(p_colonneSource >=0 && p_colonneSource <=6);
 	PRECONDITION(p_colonneDestination >=0 && p_colonneDestination <=6);
-	int test = (m_colonnes[p_colonneSource].reqTailleColonne() + 1) - p_nbCartes;
 
+	//variables temporaires permettant de faire les validations.
+	int positionCarteSource = (m_colonnes[p_colonneSource].reqTailleColonne() + 1) - p_nbCartes;
 	Carte derniereCarteDestination = m_colonnes[p_colonneDestination].derniereCarteColonne();
-	Carte carteSource = m_colonnes[p_colonneSource].carteALaPosition(test);
+	Carte carteSource = m_colonnes[p_colonneSource].carteALaPosition(positionCarteSource);
 	int valeurCarteSource = carteSource.reqValeur();
+	int tailleColonneDestination = m_colonnes[p_colonneDestination].colonneEstVide();
 
-	if((m_colonnes[p_colonneDestination].colonneEstVide()) && (valeurCarteSource == Carte::ROI))
+	//Si la taille de la colonneDestination est vide et que la première carte à bouger est un Roi, le déplacement est possible.
+	if((tailleColonneDestination == 0) && (valeurCarteSource == Carte::ROI))
 		{
 			m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
 		}
+		//Si la colone n'est pas vide, verification de la dernière carte de la colonne. Deplacement si elle est suivante à la carteSource.
 	else if(derniereCarteDestination.estSuivante(carteSource) &&
 					!derniereCarteDestination.estMemeCouleur(carteSource))
 		{
@@ -139,7 +143,7 @@ void Solitaire::deplacerColonneAPile(int p_colonneSource, int pileDestination) {
 	{
 		if(m_colonnes[p_colonneSource].derniereCarteColonne().reqValeur() == (m_pile[pileDestination].top().reqValeur() +1))
 		{
-			m_pile[pileDestination].push(m_colonnes->derniereCarteColonne());
+			m_pile[pileDestination].push(m_colonnes[p_colonneSource].derniereCarteColonne());  //m_pile[pileDestination].push(m_colonnes->derniereCarteColonne());
 			m_colonnes[p_colonneSource].supprimeDerniereCarte();
 		}
 	}
@@ -202,19 +206,21 @@ std::string Solitaire::verifieCartePile(int p_pileSource) const {
 }
 std::string Solitaire::reqEtatJeu() const
 {
-	std::ostringstream jeuFormate;
-	jeuFormate << "Talon: " << m_talon.front() << "     "
+	std::ostringstream jeuFormateSection1, jeuFormateSection2, jeuFormate;
+	jeuFormateSection1 << "Talon: " << m_talon.front() << "     "
 	<< "Piles:   " << verifieCartePile(0) << "   " << verifieCartePile(1) << "   "
 	<< verifieCartePile(2) << "   " << verifieCartePile(3) << endl
 	<< endl;
 
-	jeuFormate << "Col.0: " << m_colonnes[0] << endl <<
+	jeuFormateSection2 << "Col.0: " << m_colonnes[0] << endl <<
 	"Col.1: " << m_colonnes[1] << endl <<
 	"Col.2: " << m_colonnes[2] << endl <<
 	"Col.3: " << m_colonnes[3] << endl <<
 	"Col.4: " << m_colonnes[4] << endl <<
 	"Col.5: " << m_colonnes[5] << endl <<
 	"Col.6: " << m_colonnes[6] << endl;
+
+	jeuFormate << jeuFormateSection1.str() << jeuFormateSection2.str();
 
 	return jeuFormate.str();
 }

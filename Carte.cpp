@@ -119,7 +119,7 @@ void Carte::verifieInvariant() const
 	INVARIANT(m_sorte >=1 && m_sorte <=13);
 	INVARIANT(m_valeur >=1 && m_sorte <=4);
 }
-std::ostream& operator<<(ostream &os, const Carte& Source) {
+std::ostream& operator<<(ostream &os, const Carte& Source){
 	std::string valeurTemp, sorteTemp;
 	valeurTemp = Source.reqValeurString();
 	sorteTemp = Source.reqSorteString();
