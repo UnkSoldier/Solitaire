@@ -10,7 +10,6 @@
 #include "Carte.h"
 #include "Solitaire.h"
 #include <sstream>
-//#include <algorithm> //permet d'utiliser random_shuffle.
 
 using namespace std;
 

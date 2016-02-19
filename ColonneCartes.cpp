@@ -89,19 +89,19 @@ void ColonneCartes::deplacePaquet(ColonneCartes& p_destination, int p_nombreCart
 			supprimeDerniereCarte();
 			i++;
 		}
+
+		for (iter = paquetADeplacer.begin(); iter != paquetADeplacer.end(); ++iter) {
+			if (paquetADeplacer.size() != 0) {
+				p_destination.ajoute(paquetADeplacer.back());
+				paquetADeplacer.pop_back();
+			}
+			else if (paquetADeplacer.size() == 0) {
+				break;
+			}
+		}
 	}
 	else {
 		cout << "Impossible de deplacer ces cartes." << endl;
-	}
-
-	for (iter = paquetADeplacer.begin(); iter != paquetADeplacer.end(); ++iter) {
-		if (paquetADeplacer.size() != 0) {
-			p_destination.ajoute(paquetADeplacer.back());
-			paquetADeplacer.pop_back();
-		}
-		else if (paquetADeplacer.size() == 0) {
-			break;
-		}
 	}
 }
 Carte ColonneCartes::carteALaPosition(int p_position)
@@ -126,6 +126,10 @@ void ColonneCartes::supprimeDerniereCarte()
 	if(m_nbCartesVisibles == 0 && m_lesCartes.size() >0)
 	{
 		m_nbCartesVisibles++;
+	}
+	else if(m_nbCartesVisibles == 0 && m_lesCartes.size() == 0)
+	{
+		m_nbCartesVisibles = 0;
 	}
 }
 
@@ -172,13 +176,13 @@ std::string ColonneCartes::sortieFormate() const {
 	std::string colonne;
 	if(!this->m_lesCartes.empty())
 	{
-		for(int i = 0; i < this->m_lesCartes.size(); i++)
+		for(int i = 0; i < m_lesCartes.size(); i++)
 		{
-			if(i >= this->m_lesCartes.size() - this->m_nbCartesVisibles)
+			if(i >= m_lesCartes.size() - m_nbCartesVisibles)
 			{
 				colonne = colonne + " " + (m_lesCartes[i].reqValeurString() + "'" + m_lesCartes[i].reqSorteString());
 			}
-			else if(i < this->m_lesCartes.size() - this->m_nbCartesVisibles)
+			else if(i < m_lesCartes.size() - m_nbCartesVisibles)
 			{
 				colonne = colonne + " ?";
 			}

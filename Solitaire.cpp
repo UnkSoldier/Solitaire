@@ -75,10 +75,15 @@ void Solitaire::deplacerColonneAColonne(int p_colonneSource, int p_colonneDestin
 	Carte derniereCarteDestination = m_colonnes[p_colonneDestination].derniereCarteColonne();
 	Carte carteSource = m_colonnes[p_colonneSource].carteALaPosition(test);
 
-	if(derniereCarteDestination.estSuivante(carteSource) && !derniereCarteDestination.estMemeCouleur(carteSource))
-	{
-		m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
-	}
+	if(m_colonnes[p_colonneDestination].colonneEstVide() && carteSource.reqValeur() == Carte::ROI)
+		{
+			m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
+		}
+	else if(derniereCarteDestination.estSuivante(carteSource) &&
+					!derniereCarteDestination.estMemeCouleur(carteSource))
+		{
+			m_colonnes[p_colonneSource].deplacePaquet(m_colonnes[p_colonneDestination], p_nbCartes);
+		}
 	else
 	{
 		cout << endl << "Ce deplacement est invalide!" << endl << endl;
@@ -200,9 +205,9 @@ std::string Solitaire::reqEtatJeu() const
 	jeuFormate << "Talon: " << m_talon.front() << "     "
 	<< "Piles:   " << verifieCartePile(0) << "   " << verifieCartePile(1) << "   "
 	<< verifieCartePile(2) << "   " << verifieCartePile(3) << endl
-	<< endl <<
+	<< endl;
 
-	"Col.0: " << m_colonnes[0] << endl <<
+	jeuFormate << "Col.0: " << m_colonnes[0] << endl <<
 	"Col.1: " << m_colonnes[1] << endl <<
 	"Col.2: " << m_colonnes[2] << endl <<
 	"Col.3: " << m_colonnes[3] << endl <<
